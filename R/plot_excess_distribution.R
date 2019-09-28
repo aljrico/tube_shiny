@@ -32,15 +32,10 @@ plot_excess_distribution2 <- function(df, relative = FALSE, month = NA) {
   
   if(!is.na(month)) df <- df %>% filter(Month = month)
   
-  
   y_tags <- df$Line %>% unique()
-  
-  traces_list <- list()
-  spaces_list <- list()
-  
   colours <- gameofthrones::gameofthrones(option = "Margaery", n = length(y_tags))
   
-  p <- plotly::plot_ly(type = 'scatter', mode = 'lines', fill = 'tozeroy')
+  p <- plotly::plot_ly(type = 'scatter', mode = 'lines', fill = 'tozeroy', colors = colours)
   
   for (i in seq_along(y_tags)) {
     
