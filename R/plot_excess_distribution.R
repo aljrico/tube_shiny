@@ -9,16 +9,50 @@ plot_excess_distribution <- function(df, relative = FALSE, month = NA) {
   
   if(!is.na(month)) df <- df %>% filter(Month = month)
 
-  gg <-
-    df %>%
-    ggplot(aes(x = Excess, y = reorder(Line, -Excess), fill = reorder(Line, -Excess))) +
-    ggridges::geom_density_ridges2() +
-    theme_minimal() +
-    scale_fill_got_d(option = "Margaery", guide = FALSE) +
-    ylab("") +
-    xlab("Excess Journey Time")
+  p <- plot_ly(type = 'violin')
+  
+  i = 0
+  p <- df %>%
+    plot_ly(type = 'violin') %>%
+    add_trace(
+      x = ~df[df$Type == 'DT']$Line,
+      y = ~df[df$Type == 'DT']$Excess,
+      legendgroup = 'DT',
+      scalegroup = 'DT',
+      name = 'DT',
+      side = 'negative',
+      box = list(
+        visible = T
+      ),
+      meanline = list(
+        visible = T
+      )
+    ) %>%
+    add_trace(
+      x = ~df[df$Type == 'SS']$Line,
+      y = ~df[df$Type == 'SS']$Excess,
+      legendgroup = 'SS',
+      scalegroup = 'SS',
+      name = 'SS',
+      side = 'positive',
+      box = list(
+        visible = T
+      ),
+      meanline = list(
+        visible = T
+      )
+    ) %>% 
+    layout(
+      xaxis = list(
+        title = ""  
+      ),
+      yaxis = list(
+        title = xlabel,
+        zeroline = F
+      )
+    )
 
-  return(gg)
+  return(p)
 }
 
 #' @export
