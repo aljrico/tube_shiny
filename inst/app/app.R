@@ -40,7 +40,9 @@ body <- dashboardBody(
     tabItem(
       tabName = "Explore",
       fluidRow(
-        box(DTOutput('show_dt'), width = 12)
+        box(DTOutput('show_dt'), width = 12),
+        box(uiOutput('parameters_scatter')),
+        box(plotlyOutput('explore_scatter_plot'))
       )
     )
   )
@@ -55,8 +57,10 @@ server <- function(input, output, session) {
     values$df_data <- data.table::fread(input$csv$datapath)
     source("server/summary_plots.R", local = TRUE)
     source('server/show_table.R', local = TRUE)
-
+    source('ui/parameters_scatter.R', local = TRUE)
   })
+  
+  source('server/explore_scatter_plot.R', local = TRUE)
 }
 
 shinyApp(ui = ui, server = server)
