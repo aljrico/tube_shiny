@@ -1,6 +1,7 @@
 library(shinydashboard)
 library(shiny)
 library(shinyjs)
+library(shinyWidgets)
 library(tidyverse)
 library(data.table)
 library(gameofthrones)
