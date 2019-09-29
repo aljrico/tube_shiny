@@ -1,16 +1,16 @@
-# tubeshiny
+# hs.balancedata
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of this package is to present a usable example of a Shiny App conatained in an R package.
+The goal of hs.balancedata is to ...
 
 ## Installation
 
-You can install the released version of this package by simply
+You can install the released version of hs.balancedata from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-devtools::install_
+install.packages("hs.balancedata")
 ```
 
 ## Example

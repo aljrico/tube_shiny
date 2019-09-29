@@ -32,7 +32,7 @@ body <- dashboardBody(
   tabItems(
     tabItem(
       tabName = 'Home',
-      fluidRow(box(includeMarkdown("../../README.md"), width = 12, status = 'warning'))
+      fluidRow(box(includeMarkdown("misc/README.md"), width = 12, status = 'warning'))
     ),
     tabItem(
       tabName = "Summary",

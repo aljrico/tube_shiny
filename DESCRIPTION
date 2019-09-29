@@ -19,6 +19,7 @@ Imports:
     magrittr,
     tibble,
     stringr,
+    plotly,
     shiny
 RoxygenNote: 6.1.1
 Suggests: 
