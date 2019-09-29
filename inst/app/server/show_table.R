@@ -1,1 +1,1 @@
-output$show_dt <- renderDT(values$df_data)
+output$show_dt <- renderDT(values$df_data %>% tubeshiny::normalise_excess(check = input$check_normalise))

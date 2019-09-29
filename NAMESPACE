@@ -2,6 +2,7 @@
 
 export("%>%")
 export(":=")
+export(normalise_excess)
 export(plot_excess_boxplot)
 export(plot_excess_distribution)
 export(plot_excess_distribution2)

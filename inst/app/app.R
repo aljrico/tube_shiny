@@ -21,13 +21,19 @@ sidebar <- dashboardSidebar(
     )
   ),
   sidebarMenu(
-    menuItem("Summary", tabName = "Summary"),
-    menuItem("Explore", tabName = "Explore")
+    menuItem("Home", tabName = "Home", icon = icon('home')),
+    menuItem("Summary", tabName = "Summary", icon = icon('chart-line')),
+    menuItem("Explore", tabName = "Explore", icon = icon('search')),
+    checkboxInput(inputId = 'check_normalise', label = 'Normalise Excess Value', value = FALSE, width = NULL)
   )
 )
 
 body <- dashboardBody(
   tabItems(
+    tabItem(
+      tabName = 'Home',
+      fluidRow(box(includeMarkdown("../../README.md"), width = 12, status = 'warning'))
+    ),
     tabItem(
       tabName = "Summary",
       fluidRow(
@@ -57,10 +63,11 @@ server <- function(input, output, session) {
     values$df_data <- data.table::fread(input$csv$datapath)
     source("server/summary_plots.R", local = TRUE)
     source('server/show_table.R', local = TRUE)
-    source('ui/parameters_scatter.R', local = TRUE)
+    source('ui/parameters_scatter.R', local = TRUE)  
+    source('server/explore_scatter_plot.R', local = TRUE)
   })
-  
-  source('server/explore_scatter_plot.R', local = TRUE)
+
+
 }
 
 shinyApp(ui = ui, server = server)
