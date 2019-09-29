@@ -3,6 +3,8 @@
 export("%>%")
 export(":=")
 export(filter_lines)
+export(filter_month)
+export(filter_opened)
 export(normalise_excess)
 export(plot_excess_boxplot)
 export(plot_excess_distribution)

@@ -1,0 +1,35 @@
+explore_distribution <- function(df, y = 'Excess', relative = FALSE) {
+  if (relative) {
+    df <- df %>% dplyr::mutate(Excess = Excess / TOTAL)
+    xlabel <- "Relative Excess Journey Time"
+  } else {
+    xlabel <- "Excess Journey Time"
+  }
+  
+  if(!is.na(month)) df <- df %>% filter(Month = month)
+  
+  y_tags <- df$Line %>% unique()
+  colours <- gameofthrones::gameofthrones(option = "Margaery", n = length(y_tags))
+  
+  p <- plotly::plot_ly(type = 'scatter', mode = 'lines', fill = 'tozeroy', colors = colours)
+  
+  for (i in seq_along(y_tags)) {
+    
+    d <- density(df[Line == y_tags[[i]]][["Excess"]])
+    
+    p <- 
+      plotly::add_trace(
+        p, 
+        x = d$x,
+        y = d$y, 
+        name = y_tags[[i]]
+      )
+    
+  }
+  
+  gg <- 
+    p %>% 
+    plotly::layout(xaxis = list(title = 'Excess'), yaxis = list(title = 'Density'))
+  
+  return(gg)
+}
