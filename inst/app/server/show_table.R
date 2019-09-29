@@ -1,0 +1,1 @@
+output$show_dt <- renderDT(values$df_data)

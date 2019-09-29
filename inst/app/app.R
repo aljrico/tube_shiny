@@ -5,6 +5,7 @@ library(tidyverse)
 library(data.table)
 library(gameofthrones)
 library(plotly)
+library(DT)
 
 
 header <- dashboardHeader(title = "Tube Performance")
@@ -39,7 +40,7 @@ body <- dashboardBody(
     tabItem(
       tabName = "Explore",
       fluidRow(
-
+        box(DTOutput('show_dt'), width = 12)
       )
     )
   )
@@ -49,9 +50,13 @@ ui <- dashboardPage(header, sidebar, body, skin = "black")
 
 server <- function(input, output, session) {
   values <- reactiveValues(df_data = NULL)
-  
-  source('server/summary_plots.R', local = TRUE)
 
+  observeEvent(input$csv, {
+    values$df_data <- data.table::fread(input$csv$datapath)
+    source("server/summary_plots.R", local = TRUE)
+    source('server/show_table.R', local = TRUE)
+
+  })
 }
 
 shinyApp(ui = ui, server = server)
