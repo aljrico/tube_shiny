@@ -66,6 +66,11 @@ server <- function(input, output, session) {
     source('ui/parameters_scatter.R', local = TRUE)  
     source('server/explore_scatter_plot.R', local = TRUE)
   })
+  
+  # Close App when closing Browser Window
+  session$onSessionEnded(function() {
+    stopApp()
+  })
 
 
 }
