@@ -1,25 +1,10 @@
 # tubeshiny
 
-<!-- badges: start -->
-<!-- badges: end -->
+
 
 The goal of this package is to present a usable example of a Shiny App conatained in an R package.
 
-## Installation
 
-You can install the released version of this package by simply
-
-``` r
-devtools::install_github('aljrico/tubeshiny')
-```
-
-## Run the App
-
-The main purpose of this packge is to run a Shiny App, so let's just do it:
-
-``` r
-tubeshiny::runApp()
-```
 
 
 # How to use it
@@ -39,4 +24,12 @@ The first tab of the dashboard, `Summary` offers a quick overview of the main vi
 ## Explore
 
 The `Explore` tab is a suggested tool for the user to _explore_ the data provided with more freedom, with the possibility to build custom scatter plots and browse the actual table of data freely.
+
+This tab includes many features to customise users' visualisaton:
+
+* *X Variable*, this option lets the user pick the variable to be the X axis.
+* *Y Variable*, this option lets the user pick the variable to be the Y axis.
+* *Colour*. The scatter plot classifies the dots with colours. This option lets the user pick by what category the colour will assigned.
+* *Filter by Line*. This option lets the user filter by `Line`, so the only data displayed will be of those Lines.
+* *Range* These options will let the user filter a range for some numerical variables.
 
